@@ -110,7 +110,7 @@
 				X: 0, Y: 0
 			},
 			verticalThresholdLevel = 10,
-			verticalMoveValue = 2,
+			verticalMoveValue = 10,
 			objScroll = new iScroll('wrapper', {
 				hScrollbar: false,
 				vScrollbar: false,
@@ -132,8 +132,8 @@
 							Y: startPoint.Y - this.pointY
 						};
 					if (Math.abs(diff.Y) > verticalThresholdLevel) {
-                        $(window).scrollTop(baseTop + diff.Y);
-						//$(window).scrollTop(baseTop + (diff.Y > 0 ? verticalMoveValue : 0 - verticalMoveValue));
+                        //$(window).scrollTop(baseTop + diff.Y);
+						$(window).scrollTop(baseTop + (diff.Y > 0 ? verticalMoveValue : 0 - verticalMoveValue));
 					}
 				},
 				onScrollEnd: function(e) {
