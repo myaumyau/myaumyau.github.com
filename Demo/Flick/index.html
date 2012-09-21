@@ -132,8 +132,8 @@
 							Y: startPoint.Y - this.pointY
 						};
 					if (Math.abs(diff.Y) > verticalThresholdLevel) {
-                        //$(window).scrollTop(baseTop + diff.Y);
-						$(window).scrollTop(baseTop + (diff.Y > 0 ? verticalMoveValue : 0 - verticalMoveValue));
+                        $(window).scrollTop(baseTop + diff.Y);
+						//$(window).scrollTop(baseTop + (diff.Y > 0 ? verticalMoveValue : 0 - verticalMoveValue));
 					}
 				},
 				onScrollEnd: function(e) {
