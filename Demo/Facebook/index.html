@@ -25,13 +25,23 @@
     </style>
 </head>
 <body>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1&appId=196178803850030";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
     <h1>Facebook用デモページのインデックス!</h1>
     <h2>Facebook用デモページのインデックス。</h2>
+    <div id="fb-place"></div>
     <h3>つくったもの。</h3>
-    <!--
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
-    <script src="js/script.js"></script>
-    -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>
+    $().ready(function() {
+      $('#fb-place').html('<div class="fb-like" data-href="' + location.href + '" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>')
+    });
+    </script>
   </body>
 </html>
