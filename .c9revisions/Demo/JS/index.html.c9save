@@ -5,3 +5,4 @@
 {"ts":1349419841427,"patch":[[{"diffs":[[0,"\r\n    <ul>\r\n"],[1,"        <li><a href=\"EditCellForDoubleClick.html\">ダブルクリックでセル編集</a></li>\r\n"],[0,"    </ul>\r\n "]],"start1":585,"start2":585,"length1":24,"length2":97}]],"length":960,"saved":false}
 {"contributors":[],"silentsave":false,"ts":1349849773432,"patch":[[{"diffs":[[0," <title>"],[1,"Demo js"],[0,"</title>"]],"start1":142,"start2":142,"length1":16,"length2":23}]],"length":967,"saved":false}
 {"ts":1349849799418,"patch":[[{"diffs":[[0,">Demo js"],[1," index"],[0,"</title>"]],"start1":149,"start2":149,"length1":16,"length2":22}]],"length":973,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1350005156904,"patch":[[{"diffs":[[0,"Edit"],[-1,"CellForDoubleClick.html"],[1,"AndValidateCell/"],[0,"\">ダブ"]],"start1":631,"start2":631,"length1":31,"length2":24},{"diffs":[[0,"リックでセル編集"],[1,"と入力検証"],[0,"</a></li"]],"start1":657,"start2":657,"length1":16,"length2":21}]],"length":971,"saved":false}
