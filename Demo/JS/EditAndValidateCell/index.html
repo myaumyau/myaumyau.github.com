@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>ダブルクリックでセル編集と入力検証</title>
+	<style type="text/css">
+	body {
+		margin: 0;
+		padding: 0;
+	}
+	p, div, ul, li, img {
+		margin: 0;
+		padding: 0;
+	}
+	ul {
+		list-style: none outside none;
+	}
+	textarea {
+		resize: none;
+	}
+	#container {
+		margin: 10px;
+	}
+	#inputable-table {
+		border-collapse: collapse;
+		border-top: #e3e3e3 1px solid;
+		border-right: #e3e3e3 1px solid;
+	}
+	#inputable-table th,
+	#inputable-table td {
+		width: 100px;
+		height: 20px;
+		padding: 0 1px;
+		border-bottom: #e3e3e3 1px solid;
+		border-left: #e3e3e3 1px solid;
+		font-size: 12px;
+		vertical-align: bottom;
+	}
+	#inputable-table th {
+		background-color: #BDD5EF;
+	}
+	#inputable-table .number {
+		text-align: right;
+	}
+	#inputable-table .description {
+		width: 250px;
+	}
+	#inputable-table .editable input {
+		border: none;
+		width: 100px;
+		height: 19px;
+		line-height: 19px;
+		padding: 0;
+		background-color: #ccc;
+		color: #000;
+		font-size: 12px;
+	}
+	h1 {
+		display: none;
+	}
+	</style>
+	<link rel="stylesheet" type="text/css" href="exvalidation.css" media="all" />
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="exvalidation.orz.js"></script>
+	<script type="text/javascript" src="exchecker-ja.js"></script>
+	<script type="text/javascript" src="exchecker-ja.orz.js"></script>
+	<script type="text/javascript">
+	$().ready(function() {
+		// 検証
+		var isValid = true;
+		// editableクラスが設定されている要素(td)にテキストボックスを隠すspanを追加する
+		$('#inputable-table td.editable input[type="text"]').each(function(index, elm) {
+			$(elm).hide();
+			$(elm).before($('<span/>').html($(elm).val()));
+		});
+		// 検証
+		$('#inputable-table').exValidation({
+			firstValidate: true,
+			customListener: 'blur',
+			errAfter: function(target, id, message) { // 既存の検証失敗時の処理の後に実行する処理
+				isValid = false;
+				// 入力していたテキストボックス以外をreadonlyにする
+				$('#inputable-table td.editable input[type="text"]').each(function(index, elm) {
+					if (elm.id != id) {
+						$(elm).attr("readonly", true);
+					}
+				});
+			},
+			okAfter: function(target, id) { // 既存の検証成功時の処理の後に実行する処理
+				isValid = true;
+				$('#inputable-table td.editable input[type="text"]').each(function(index, elm) {
+					$(elm).attr('readonly', false);
+				});
+				// テキストボックスを非表示、spanに入力値を設定して表示
+				var span = $(target).parent().children('span'), input = $(target);
+				span.html(input.val());
+				input.hide();
+				span.show();
+			}
+		});
+		// editableクラスが設定されている要素(td)のダブルクリック時の挙動
+		$('#inputable-table td.editable').dblclick(function() {
+			// 検証失敗のテキストボックスがある場合は、ダブルクリック無効
+			if (!isValid) {
+				return;
+			}
+			// spanを非表示、テキストボックスを表示してフォーカスを移す
+			var span = $(this).children('span'), input = $(this).children('input');
+			span.hide();
+			input.show();
+			input.focus().val(input.val());
+		});
+	});
+	</script>
+</head>
+<body>
+	<h1>ダブルクリックでセル編集と入力検証</h1>
+	<h2>ダブルクリックでセル編集と入力検証</h2>
+	<div id="container">
+		<p>[Columns3]列のセルをダブルクリックするとそのセルが編集できるようになります。</p>
+		<p>using <a href="https://github.com/5509/exValidation/" target="_blank">exValidation (jQuery Plugin)</a></p>
+		<table id="inputable-table" >
+			<thead>
+				<tr>
+					<th>Column1</th>
+					<th>Column2</th>
+					<th>Column3</th>
+					<th>Column4</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="number"><span>1</span></td>
+					<td class="number"><span>2</span></td>
+					<td class="number editable">
+						<input type="text" id="ctl0_input" value="" class="chknocaps" style="" />
+					</td>
+					<td class="description"><span>英数字(小文字のみ)</span></td>
+				</tr>
+				<tr>
+					<td class="number"><span>5</span></td>
+					<td class="number"><span>6</span></td>
+					<td class="number editable">
+						<input type="text" id="ctl1_input" value="" class="chkmin3" style="" />
+					</td>
+					<td class="description"><span>3文字以上</span></td>
+				</tr>
+				<tr>
+					<td class="number"><span>9</span></td>
+					<td class="number"><span>10</span></td>
+					<td class="number editable">
+						<input type="text" id="ctl2_input" value="" class="chkORZ1" style="" />
+					</td>
+					<td class="description"><span>0 &lt;= val &lt; 1000(小数第2位まで可)</span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
