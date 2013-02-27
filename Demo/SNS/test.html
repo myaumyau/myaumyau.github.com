@@ -48,12 +48,33 @@
         <h3>ページのOGPタグが正しいか確認する</h3>
         <p><a href="http://developers.facebook.com/tools/debug" target="_blank">Facebook開発者 デバッガー</a></p>
     </div>
+    <h2>[+1]ボタン</h2>
+    <div class="gplus">
+        <div class="g-plusone" data-size="medium" data-annotation="none" data-count="false" data-href="http://myaumyau.github.com/Demo/SNS/test.html"></div>
+    </div>
     <h2>LINE</h2>
     <div class="line">
         <a href="http://line.naver.jp/R/msg/text/?%E3%80%8CLINE%E3%81%A7%E9%80%81%E3%82%8B%E3%80%8D%E3%81%AE%E3%83%87%E3%83%A2%E3%80%82%0D%0Ahttp%3A%2F%2Fmyaumyau.github.com%2FDemo%2FSNS%2Ftest.html" target="_blank"><img src="//myaumyau.github.com/Demo/SNS/images/linebutton_86x20.png" alt="LINEで送る" height="20" width="86"></a>
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script>
+    	(function() {
+			$().ready(function() {
+				window.___gcfg = {lang: 'ja'}; // Google+
+				addSns('js-gp', '//apis.google.com/js/plusone.js');
+			});
+			var d = document,
+				addSns = function(id, u, er) {
+					var p, js = d.getElementById(id);
+					if (!er && js) return;
+					if (er && js) js.parentNode.removeChild(js); js = d.createElement('script');
+					if (id) js.id = id;
+					js.type = 'text/javascr' + 'ipt'; js.async = true; js.src = u;
+					p = d.getElementsByTagName('script')[0];
+					p.parentNode.insertBefore(js, p);
+				};
+			window.addSns = addSns;
+		})();
     </script>
   </body>
 </html>
