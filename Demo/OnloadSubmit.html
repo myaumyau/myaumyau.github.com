@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>OnloadSubmit</title>
+    <meta name="author" content="">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width">
+</head>
+<body onload="javascript:log('body onlod');">
+    <script>
+    function log(s) {
+        //alert(s);
+        console && console.log && console.log(s);
+        PostData();
+    }
+    function PostData() {
+        document.PostForm.method = "post";
+        document.PostForm.action = "https://www.google.co.jp/";
+        document.PostForm.submit();
+    }
+    </script>
+    <p>OnloadSubmit</p>
+    <form name="PostForm" id="PostForm" method="post">
+        <input type="hidden" value="010101" />
+    </form>
+    <script>
+    </script>
+  </body>
+</html>
