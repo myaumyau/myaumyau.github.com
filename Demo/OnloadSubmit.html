@@ -14,11 +14,17 @@
     function log(s) {
         //alert(s);
         console && console.log && console.log(s);
-        PostData();
+        delayExec(PostData, 1000);
+    }
+    function delayExec(fn, delay) {
+        var handler = setInterval(function() {
+            clearInterval(handler);
+            fn();
+        }, delay);
     }
     function PostData() {
         document.PostForm.method = "post";
-        document.PostForm.action = "https://www.google.co.jp/";
+        document.PostForm.action = "http://www.yahoo.co.jp/";
         document.PostForm.submit();
     }
     </script>
